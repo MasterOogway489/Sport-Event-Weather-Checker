@@ -94,16 +94,10 @@ var cityWeather = ['Skip', '36.0909,115.1833', '30.3239,81.6373', '42.0909,71.26
 '39.7439,105.0201', '32.7480,97.0934', '33.9535,118.3390', '33.9535,118.3390', '44.9736,93.2575'] 
     
 console.log(teamID[32])
-<<<<<<< HEAD:code/js/script.js
 
 //Weather API function
 
 var saltLakeCityURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + cityWeather[x] + "/next14days?unitGroup=us&key=WNRU679QQP5CDJZWL8EN8LWH9"
-=======
-//Weather API function
-
-var saltLakeCityURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/40.7608,-111.8911/next14days?unitGroup=us&key=WNRU679QQP5CDJZWL8EN8LWH9"
->>>>>>> 1cc6be13046cca2bf532e361b763c400b272cd69:assets/js/script.js
 
 fetch(saltLakeCityURL)
     .then(function (response) {
@@ -113,7 +107,3 @@ fetch(saltLakeCityURL)
         console.log('Salt Lake City: Raw data\n----------')
         console.log(data);
     });
-<<<<<<< HEAD:code/js/script.js
-
-=======
->>>>>>> 1cc6be13046cca2bf532e361b763c400b272cd69:assets/js/script.js
