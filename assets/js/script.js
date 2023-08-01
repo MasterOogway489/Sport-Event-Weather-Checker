@@ -96,14 +96,20 @@ var cityWeather = ['Skip', '36.0909,115.1833', '30.3239,81.6373', '42.0909,71.26
 console.log(teamID[32])
 
 //Weather API function
+//need function to fill var latLong
+var latLong = ""
 
-var saltLakeCityURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + cityWeather[x] + "/next14days?unitGroup=us&key=WNRU679QQP5CDJZWL8EN8LWH9"
+function getWeather() {
+   var requestURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + latLong + "?key=WNRU679QQP5CDJZWL8EN8LWH9";
 
-fetch(saltLakeCityURL)
+   fetch(requestURL)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        console.log('Salt Lake City: Raw data\n----------')
+        console.log('Weather: Raw data\n----------')
         console.log(data);
     });
+
+}
+
