@@ -127,19 +127,33 @@ var cityWeather = ['Skip', '36.0909,115.1833', '30.3239,81.6373', '42.0909,71.26
 '39.7601,86.1639', '40.4468,80.0158', '47.5951,122.3321', '27.9759,82.5033', '25.9583,80.2396', '29.6847,95.4107', '29.9511,90.0812',
 '39.7439,105.0201', '32.7480,97.0934', '33.9535,118.3390', '33.9535,118.3390', '44.9736,93.2575'] 
     
-console.log(teamID[32])
+
+
+function searchArray(userInput, teamID) {
+    let userInput = document.getElementById("search-input");
+    for (let i = 0; i < teamID.length; i++) {
+      if (array[i].includes(userInput)) {
+        return i;
+      }
+    }
+    return "Enter a viable NFL Team";
+  };
 
 //Weather API function
+//need function to fill var latLong
+var latLong = ""
 
-// var saltLakeCityURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + cityWeather[x] + "/next14days?unitGroup=us&key=WNRU679QQP5CDJZWL8EN8LWH9"
+function getWeather() {
+   var requestURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + latLong + "?key=WNRU679QQP5CDJZWL8EN8LWH9";
 
-// fetch(saltLakeCityURL)
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log('Salt Lake City: Raw data\n----------')
-//         console.log(data);
-//     });
+   fetch(requestURL)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log('Weather: Raw data\n----------')
+        console.log(data);
+    });
 
-formEl.addEventListener("submit", submitForm);
+}
+
