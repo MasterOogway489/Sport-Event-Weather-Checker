@@ -8,18 +8,8 @@
 
 
 //access games api sample
-function gameID(){    
-    var parameter = ["date", "id", "team"]
-    var paramID = function() {
-        if (parameter = "date"){
-            dayjs("YYYY-MM-DD")
-        } else if (parameter = "id"){
-            // return 4 digit game id
-        } else { //"team"
-            //return 3 digit team id (I do not know where to find either of these)
-        }
-    }
-    fetch("https://v1.american-football.api-sports.io/games?" + parameter + "=" + paramID, {
+function gameID(teamName){    
+    fetch("https://v1.american-football.api-sports.io/games?team=" + teamName, {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "v1.american-football.api-sports.io",
