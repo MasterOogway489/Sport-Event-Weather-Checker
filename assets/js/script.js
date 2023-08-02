@@ -100,6 +100,7 @@ var cityWeather = ['Skip', '36.0909,115.1833', '30.3239,81.6373', '42.0909,71.26
 '39.7601,86.1639', '40.4468,80.0158', '47.5951,122.3321', '27.9759,82.5033', '25.9583,80.2396', '29.6847,95.4107', '29.9511,90.0812',
 '39.7439,105.0201', '32.7480,97.0934', '33.9535,118.3390', '33.9535,118.3390', '44.9736,93.2575'] 
     
+
 //Weather API function
 //need function to fill var latLong
 var latLong = "32.7480,97.0934"
@@ -154,7 +155,12 @@ function makeGameCard() {
 
 }
 
+
 //dropdown menu codeblock
+
+console.log(window)
+console.log(window.document)
+
 var dropdown = document.querySelector('.dropdown');
 dropdown.addEventListener('click', function(event) {
   event.stopPropagation();
@@ -162,4 +168,6 @@ dropdown.addEventListener('click', function(event) {
   console.log(dropdown)
 //   console.log(dropdown.dropdown-content)
 //   console.log(dropdown-item)
+
 });
+
