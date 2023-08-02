@@ -12,11 +12,11 @@ var teamID = ["Skip", "Las Vegas Raiders", "Jacksonville Jaguars", "New England 
 "Indianapolis Colts", "Pittsburgh Steelers", "Seattle Seahawks", "Tampa Bay Buccaneers", "Miami Dolphins", "Huston Texans", "New Orleans Saints",
 "Denver Broncos", "Dallas Cowboys", "Los Angeles Chargers", "Las Angeles Rams", "Minnesota Vikings"];
 
-function submitForm(event) {
-    event.preventDefault();
+// function submitForm(event) {
+//     event.preventDefault();
     
-    getTeamID(teamIdEl.value, teamID);
-}
+//     getTeamID(teamIdEl.value, teamID);
+// }
 
 function getTeamID(teamName, teamID) {
     var teamIndex = teamID.indexOf(teamName);
@@ -39,34 +39,7 @@ function getGameInfo(teamIndex) {
     .then(function (data) {
         console.log(data);
     })
-}
-
-//access games api sample
-function gameID(teamName){    
-    var parameter = ["date", "id", "team"]
-    var paramID = function() {
-        if (parameter = "date"){
-            dayjs("YYYY-MM-DD")
-        } else if (parameter = "id"){
-            // return 4 digit game id
-        } else { //"team"
-            //return 3 digit team id (I do not know where to find either of these)
-        }
-    }
-    fetch("https://v1.american-football.api-sports.io/games?" + parameter + "=" + paramID, {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "v1.american-football.api-sports.io",
-            "x-rapidapi-key": "XxXxXxXxXxXxXxXxXxXxXxXx"
-        }
-    })
-    .then(response => {
-        console.log(response);
-    })
-    .catch(err => {
-        console.log(err);
-    }); 
-}
+};
 
 // function getTeamID(){
 
@@ -127,33 +100,66 @@ var cityWeather = ['Skip', '36.0909,115.1833', '30.3239,81.6373', '42.0909,71.26
 '39.7601,86.1639', '40.4468,80.0158', '47.5951,122.3321', '27.9759,82.5033', '25.9583,80.2396', '29.6847,95.4107', '29.9511,90.0812',
 '39.7439,105.0201', '32.7480,97.0934', '33.9535,118.3390', '33.9535,118.3390', '44.9736,93.2575'] 
     
-
-
-function searchArray(userInput, teamID) {
-    let userInput = document.getElementById("search-input");
-    for (let i = 0; i < teamID.length; i++) {
-      if (array[i].includes(userInput)) {
-        return i;
-      }
-    }
-    return "Enter a viable NFL Team";
-  };
-
 //Weather API function
 //need function to fill var latLong
-var latLong = ""
+var latLong = "32.7480,97.0934"
 
 function getWeather() {
    var requestURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + latLong + "?key=WNRU679QQP5CDJZWL8EN8LWH9";
+   var conditionsArray = [];
+   var tempArray = [];
+   var iconArray = [];
 
    fetch(requestURL)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        console.log('Weather: Raw data\n----------')
-        console.log(data);
+        for (var i = 0; i < data.days.length; i++) {
+            conditionsArray.push(data.days[i].conditions)
+        };
     });
+
+    fetch(requestURL)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        for (var i = 0; i < data.days.length; i++) {
+            tempArray.push(data.days[i].temp)
+        };
+    });
+
+    fetch(requestURL)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        for (var i = 0; i < data.days.length; i++) {
+            iconArray.push(data.days[i].icon)
+        };
+    });
+
+    console.log('Weather: Conditions\n----------');
+    console.log(conditionsArray);
+    console.log('Weather: Temperature\n----------');
+    console.log(tempArray);
+    console.log('Weather: Icon\n----------')
+    console.log(iconArray);
+};
+
+getWeather();
+
+function makeGameCard() {
 
 }
 
+//dropdown menu codeblock
+var dropdown = document.querySelector('.dropdown');
+dropdown.addEventListener('click', function(event) {
+  event.stopPropagation();
+  dropdown.classList.toggle('is-active');
+  console.log(dropdown)
+//   console.log(dropdown.dropdown-content)
+//   console.log(dropdown-item)
+});
