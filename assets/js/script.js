@@ -12,8 +12,7 @@ var teamID = ["Skip", "Las Vegas Raiders", "Jacksonville Jaguars", "New England 
 "Indianapolis Colts", "Pittsburgh Steelers", "Seattle Seahawks", "Tampa Bay Buccaneers", "Miami Dolphins", "Huston Texans", "New Orleans Saints",
 "Denver Broncos", "Dallas Cowboys", "Los Angeles Chargers", "Las Angeles Rams", "Minnesota Vikings"];
 
-// function submitForm(event) {
-//     event.preventDefault();
+
     
 //     getTeamID(teamIdEl.value, teamID);
 // }
@@ -39,7 +38,6 @@ function getGameInfo(teamIndex) {
     .then(function (data) {
         console.log(data);
     })
-};
 
 // function getTeamID(){
 
@@ -58,28 +56,18 @@ function getGameInfo(teamIndex) {
 
 // }
 //access team ID's
-fetch("https://v1.american-football.api-sports.io/teams?id=1", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "v1.american-football.api-sports.io",
-		"x-rapidapi-key": "XxXxXxXxXxXxXxXxXxXxXxXx"
-	}
-})
-.then(response => {
-	console.log(response);
-})
-.catch(err => {
-	console.log(err);
-});
 
 //access logos from the api using 
-const url = 'https://api-american-football.p.rapidapi.com/teams?id=' + teamID;
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'e51f2cac63mshd60e8397482df2cp17863djsn20263e9969af',
-		'X-RapidAPI-Host': 'api-american-football.p.rapidapi.com'
-	}
+var teamID 
+var dropdown = document.getElementbyId("dropdown");
+dropdown.addEventListener("change", function(){
+    teamID = dropdown.value;
+});
+function homeTeamImg(){;
+    var homeImg = document.createElement("img");
+    homeImg.src = 'https://media.api-sports.io/american-football/teams/' + teamID + '.png';
+    var src = document.getElementById("home-team-logo");
+    src.appendChild(homeImg);
 };
 
 // try {
@@ -154,7 +142,7 @@ getWeather();
 function makeGameCard() {
 
 }
-
+<
 
 //dropdown menu codeblock
 
@@ -170,4 +158,5 @@ dropdown.addEventListener('click', function(event) {
 //   console.log(dropdown-item)
 
 });
+
 
