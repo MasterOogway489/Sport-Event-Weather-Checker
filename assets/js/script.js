@@ -12,6 +12,7 @@ var teamID = ["Skip", "Las Vegas Raiders", "Jacksonville Jaguars", "New England 
 "Indianapolis Colts", "Pittsburgh Steelers", "Seattle Seahawks", "Tampa Bay Buccaneers", "Miami Dolphins", "Huston Texans", "New Orleans Saints",
 "Denver Broncos", "Dallas Cowboys", "Los Angeles Chargers", "Las Angeles Rams", "Minnesota Vikings"];
 
+
 var team;
 function setTeam(){
   team = document.getElementById('team').value;
@@ -48,32 +49,6 @@ function getGameInfo(teamIndex) {
     })
 }
 
-//access games api sample
-function gameID(teamName){    
-    var parameter = ["date", "id", "team"]
-    var paramID = function() {
-        if (parameter = "date"){
-            dayjs("YYYY-MM-DD")
-        } else if (parameter = "id"){
-            // return 4 digit game id
-        } else { //"team"
-            //return 3 digit team id (I do not know where to find either of these)
-        }
-    }
-    fetch("https://v1.american-football.api-sports.io/games?" + parameter + "=" + paramID, {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "v1.american-football.api-sports.io",
-            "x-rapidapi-key": "XxXxXxXxXxXxXxXxXxXxXxXx"
-        }
-    })
-    .then(response => {
-        console.log(response);
-    })
-    .catch(err => {
-        console.log(err);
-    }); 
-}
 
 // function getTeamID(){
 
@@ -94,18 +69,16 @@ function gameID(teamName){
 //access team ID's
 
 //access logos from the api using 
+var teamID 
+var dropdown = document.getElementbyId("dropdown");
+dropdown.addEventListener("change", function(){
+    teamID = dropdown.value;
+});
 function homeTeamImg(){;
     var homeImg = document.createElement("img");
-    homeImg.src = 'https://api-american-football.p.rapidapi.com/teams?id=' + teamID;
+    homeImg.src = 'https://media.api-sports.io/american-football/teams/' + teamID + '.png';
     var src = document.getElementById("home-team-logo");
-    src.appendChild(img);
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'e51f2cac63mshd60e8397482df2cp17863djsn20263e9969af',
-            'X-RapidAPI-Host': 'api-american-football.p.rapidapi.com'
-        }
-    };
+    src.appendChild(homeImg);
 };
 
 // try {
