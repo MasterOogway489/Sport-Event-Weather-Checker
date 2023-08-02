@@ -12,6 +12,13 @@ var teamID = ["Skip", "Las Vegas Raiders", "Jacksonville Jaguars", "New England 
 "Indianapolis Colts", "Pittsburgh Steelers", "Seattle Seahawks", "Tampa Bay Buccaneers", "Miami Dolphins", "Huston Texans", "New Orleans Saints",
 "Denver Broncos", "Dallas Cowboys", "Los Angeles Chargers", "Las Angeles Rams", "Minnesota Vikings"];
 
+var team;
+function setTeam(){
+  team = document.getElementById('team').value;
+  console.log(team);
+}
+
+
 function submitForm(event) {
     event.preventDefault();
     
@@ -85,28 +92,20 @@ function gameID(teamName){
 
 // }
 //access team ID's
-fetch("https://v1.american-football.api-sports.io/teams?id=1", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "v1.american-football.api-sports.io",
-		"x-rapidapi-key": "XxXxXxXxXxXxXxXxXxXxXxXx"
-	}
-})
-.then(response => {
-	console.log(response);
-})
-.catch(err => {
-	console.log(err);
-});
 
 //access logos from the api using 
-const url = 'https://api-american-football.p.rapidapi.com/teams?id=' + teamID;
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'e51f2cac63mshd60e8397482df2cp17863djsn20263e9969af',
-		'X-RapidAPI-Host': 'api-american-football.p.rapidapi.com'
-	}
+function homeTeamImg(){;
+    var homeImg = document.createElement("img");
+    homeImg.src = 'https://api-american-football.p.rapidapi.com/teams?id=' + teamID;
+    var src = document.getElementById("home-team-logo");
+    src.appendChild(img);
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'e51f2cac63mshd60e8397482df2cp17863djsn20263e9969af',
+            'X-RapidAPI-Host': 'api-american-football.p.rapidapi.com'
+        }
+    };
 };
 
 // try {
@@ -128,17 +127,6 @@ var cityWeather = ['Skip', '36.0909,115.1833', '30.3239,81.6373', '42.0909,71.26
 '39.7439,105.0201', '32.7480,97.0934', '33.9535,118.3390', '33.9535,118.3390', '44.9736,93.2575'] 
     
 
-
-function searchArray(userInput, teamID) {
-    let userInput = document.getElementById("search-input");
-    for (let i = 0; i < teamID.length; i++) {
-      if (array[i].includes(userInput)) {
-        return i;
-      }
-    }
-    return "Enter a viable NFL Team";
-  };
-
 //Weather API function
 //need function to fill var latLong
 var latLong = ""
@@ -156,4 +144,3 @@ function getWeather() {
     });
 
 }
-
