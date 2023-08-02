@@ -129,15 +129,7 @@ var cityWeather = ['Skip', '36.0909,115.1833', '30.3239,81.6373', '42.0909,71.26
     
 
 
-function searchArray(userInput, teamID) {
-    let userInput = document.getElementById("search-input");
-    for (let i = 0; i < teamID.length; i++) {
-      if (array[i].includes(userInput)) {
-        return i;
-      }
-    }
-    return "Enter a viable NFL Team";
-  };
+
 
 //Weather API function
 //need function to fill var latLong
@@ -157,3 +149,13 @@ function getWeather() {
 
 }
 
+console.log(window)
+console.log(window.document)
+var dropdown = document.querySelector('.dropdown');
+dropdown.addEventListener('click', function(event) {
+  event.stopPropagation();
+  dropdown.classList.toggle('is-active');
+  console.log(dropdown)
+//   console.log(dropdown.dropdown-content)
+//   console.log(dropdown-item)
+});
