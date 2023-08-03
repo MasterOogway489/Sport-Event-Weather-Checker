@@ -38,6 +38,7 @@ function getGameInfo(teamIndex) {
     .then(function (data) {
         console.log(data);
     })
+};
 
 // function getTeamID(){
 
@@ -58,17 +59,17 @@ function getGameInfo(teamIndex) {
 //access team ID's
 
 //access logos from the api using 
-var teamID 
-var dropdown = document.getElementbyId("dropdown");
-dropdown.addEventListener("change", function(){
-    teamID = dropdown.value;
-});
-function homeTeamImg(){;
-    var homeImg = document.createElement("img");
-    homeImg.src = 'https://media.api-sports.io/american-football/teams/' + teamID + '.png';
-    var src = document.getElementById("home-team-logo");
-    src.appendChild(homeImg);
-};
+// var teamID = null;
+// var dropdown = document.getElementbyId("dropdown");
+// dropdown.addEventListener("change", function(){
+//     teamID = dropdown.value;
+// });
+// function homeTeamImg(){;
+//     var homeImg = document.createElement("img");
+//     homeImg.src = 'https://media.api-sports.io/american-football/teams/' + teamID + '.png';
+//     var src = document.getElementById("home-team-logo");
+//     src.appendChild(homeImg);
+// };
 
 // try {
 // 	const response = await fetch(url, options);
@@ -139,24 +140,21 @@ function getWeather() {
 
 getWeather();
 
-function makeGameCard() {
-
-}
-<
+function makeGameCard() {}
 
 //dropdown menu codeblock
 
-console.log(window)
-console.log(window.document)
+// console.log(window);
+// console.log(window.document);
 
-var dropdown = document.querySelector('.dropdown');
-dropdown.addEventListener('click', function(event) {
-  event.stopPropagation();
-  dropdown.classList.toggle('is-active');
-  console.log(dropdown)
+// var dropdown = document.querySelector('.dropdown');
+// dropdown.addEventListener('click', function(event) {
+//   event.stopPropagation();
+//   dropdown.classList.toggle('is-active');
+//   console.log(dropdown)
 //   console.log(dropdown.dropdown-content)
 //   console.log(dropdown-item)
 
-});
+// });
 
 
