@@ -1,4 +1,3 @@
-
 // AMERICAN-FOOTBALL-API
 
 // api keys:  
@@ -38,7 +37,7 @@ function getGameInfo(teamIndex) {
     .then(function (data) {
         console.log(data);
     })
-
+}
 // function getTeamID(){
 
 
@@ -59,10 +58,11 @@ function getGameInfo(teamIndex) {
 
 //access logos from the api using 
 var teamID 
-var dropdown = document.getElementbyId("dropdown");
-dropdown.addEventListener("change", function(){
-    teamID = dropdown.value;
-});
+// var dropdown = document.getElementbyId("dropdown");
+// dropdown.addEventListener("change", function(){
+//     teamID = dropdown.value;
+// });
+// <!-- commented out because this line is returning an error on the console- Erick 8/2/23 -->
 function homeTeamImg(){;
     var homeImg = document.createElement("img");
     homeImg.src = 'https://media.api-sports.io/american-football/teams/' + teamID + '.png';
@@ -140,23 +140,19 @@ function getWeather() {
 getWeather();
 
 function makeGameCard() {
-
 }
-<
 
-//dropdown menu codeblock
+// calendar functionality 
 
-console.log(window)
-console.log(window.document)
+document.addEventListener('DOMContentLoaded', function () {
+// Initialize all input of type date
+var calendars = bulmaCalendar.attach('[type="date"]');
 
-var dropdown = document.querySelector('.dropdown');
-dropdown.addEventListener('click', function(event) {
-  event.stopPropagation();
-  dropdown.classList.toggle('is-active');
-  console.log(dropdown)
-//   console.log(dropdown.dropdown-content)
-//   console.log(dropdown-item)
-
+// Loop on each calendar initialized
+for(var i = 0; i < calendars.length; i++) {
+	// Add listener to select event
+	calendars[i].on('select', date => {
+		console.log(date);
+	});
+}
 });
-
-
