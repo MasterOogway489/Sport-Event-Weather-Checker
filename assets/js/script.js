@@ -13,18 +13,9 @@ var teamID = ["Skip", "Las Vegas Raiders", "Jacksonville Jaguars", "New England 
 "Denver Broncos", "Dallas Cowboys", "Los Angeles Chargers", "Las Angeles Rams", "Minnesota Vikings"];
 
 
-var team;
-function setTeam(){
-  team = document.getElementById('team').value;
-  console.log(team);
-}
-
-
-function submitForm(event) {
-    event.preventDefault();
     
-    getTeamID(teamIdEl.value, teamID);
-}
+//     getTeamID(teamIdEl.value, teamID);
+// }
 
 function getTeamID(teamName, teamID) {
     var teamIndex = teamID.indexOf(teamName);
@@ -47,8 +38,7 @@ function getGameInfo(teamIndex) {
     .then(function (data) {
         console.log(data);
     })
-}
-
+};
 
 // function getTeamID(){
 
@@ -69,17 +59,17 @@ function getGameInfo(teamIndex) {
 //access team ID's
 
 //access logos from the api using 
-var teamID 
-var dropdown = document.getElementbyId("dropdown");
-dropdown.addEventListener("change", function(){
-    teamID = dropdown.value;
-});
-function homeTeamImg(){;
-    var homeImg = document.createElement("img");
-    homeImg.src = 'https://media.api-sports.io/american-football/teams/' + teamID + '.png';
-    var src = document.getElementById("home-team-logo");
-    src.appendChild(homeImg);
-};
+// var teamID = null;
+// var dropdown = document.getElementbyId("dropdown");
+// dropdown.addEventListener("change", function(){
+//     teamID = dropdown.value;
+// });
+// function homeTeamImg(){;
+//     var homeImg = document.createElement("img");
+//     homeImg.src = 'https://media.api-sports.io/american-football/teams/' + teamID + '.png';
+//     var src = document.getElementById("home-team-logo");
+//     src.appendChild(homeImg);
+// };
 
 // try {
 // 	const response = await fetch(url, options);
@@ -102,18 +92,69 @@ var cityWeather = ['Skip', '36.0909,115.1833', '30.3239,81.6373', '42.0909,71.26
 
 //Weather API function
 //need function to fill var latLong
-var latLong = ""
+var latLong = "32.7480,97.0934"
 
 function getWeather() {
    var requestURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + latLong + "?key=WNRU679QQP5CDJZWL8EN8LWH9";
+   var conditionsArray = [];
+   var tempArray = [];
+   var iconArray = [];
 
    fetch(requestURL)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        console.log('Weather: Raw data\n----------')
-        console.log(data);
+        for (var i = 0; i < data.days.length; i++) {
+            conditionsArray.push(data.days[i].conditions)
+        };
     });
 
-}
+    fetch(requestURL)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        for (var i = 0; i < data.days.length; i++) {
+            tempArray.push(data.days[i].temp)
+        };
+    });
+
+    fetch(requestURL)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        for (var i = 0; i < data.days.length; i++) {
+            iconArray.push(data.days[i].icon)
+        };
+    });
+
+    console.log('Weather: Conditions\n----------');
+    console.log(conditionsArray);
+    console.log('Weather: Temperature\n----------');
+    console.log(tempArray);
+    console.log('Weather: Icon\n----------')
+    console.log(iconArray);
+};
+
+getWeather();
+
+function makeGameCard() {}
+
+//dropdown menu codeblock
+
+// console.log(window);
+// console.log(window.document);
+
+// var dropdown = document.querySelector('.dropdown');
+// dropdown.addEventListener('click', function(event) {
+//   event.stopPropagation();
+//   dropdown.classList.toggle('is-active');
+//   console.log(dropdown)
+//   console.log(dropdown.dropdown-content)
+//   console.log(dropdown-item)
+
+// });
+
+
