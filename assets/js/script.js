@@ -57,6 +57,17 @@ function getGameInfo(teamIndex) {
 //access team ID's
 
 //access logos from the api using 
+// var teamID = null;
+// var dropdown = document.getElementbyId("dropdown");
+// dropdown.addEventListener("change", function(){
+//     teamID = dropdown.value;
+// });
+// function homeTeamImg(){;
+//     var homeImg = document.createElement("img");
+//     homeImg.src = 'https://media.api-sports.io/american-football/teams/' + teamID + '.png';
+//     var src = document.getElementById("home-team-logo");
+//     src.appendChild(homeImg);
+// };
 var teamID 
 // var dropdown = document.getElementbyId("dropdown");
 // dropdown.addEventListener("change", function(){
@@ -139,8 +150,7 @@ function getWeather() {
 
 getWeather();
 
-function makeGameCard() {
-}
+function makeGameCard() {}
 
 // calendar functionality 
 
