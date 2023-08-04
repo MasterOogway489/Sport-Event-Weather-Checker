@@ -73,7 +73,8 @@ function getGameInfo(date) {
 
 }; 
 
-function TeamImg(homeTeamID, awayTeamID){;
+function TeamImg(homeTeamID, awayTeamID){
+    
      var homeImg = document.createElement("img");
      homeImg.src = 'https://media.api-sports.io/american-football/teams/' + homeTeamID + '.png';
      var homeSrc = document.getElementById("home-team-logo");
@@ -115,7 +116,25 @@ function getWeather(location, date) {
         return response.json();
     })
     .then(function (data) {
-      console.log(data);
-    });
-};
+        console.log(data);
+        let currentTemp = data.days[0].temp;
+        let currentWind = data.days[0].windspeed;
+        let currentHumidity = data.days[0].humidity;
+        let description = data.days[0].description;
 
+        date = dayjs(date).format("MM/DD/YYYY");
+        
+        let weatherTitleEl = document.getElementById("weather-title");
+        let currentTempEl = document.getElementById("current-temp");
+        let currentWindEl = document.getElementById("current-wind-speed");
+        let currentHumidityEl = document.getElementById("current-humidity");
+        let descriptionEl = document.getElementById("description");
+        weatherTitleEl.textContent = `Weather for ${location} on ${date}`;
+        currentTempEl.textContent = `Temp: ${currentTemp}°F`;
+        currentHumidityEl.textContent = `Humidity: ${currentHumidity}%`;
+        currentWindEl.textContent = `Wind: ${currentWind} MPH`;
+        descriptionEl.textContent = description;
+    });
+
+
+};
