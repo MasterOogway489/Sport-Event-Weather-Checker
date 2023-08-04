@@ -13,7 +13,7 @@ var homeTeamID2
 var awayTeamID1
 var awayTeamID2
 var date
-var location = null;
+var location
 
 var teamID = ["Skip", "Las Vegas Raiders", "Jacksonville Jaguars", "New England Patriots", "New York Giants", "Baltimore Ravens", "Tennessee Titans", "Detroit Lions",
 "Atlanta Falcons", "Cleveland Browns", "Cincinnati Bengals", "Arizona Cardinals", "Philidelphia Eagles", "New York Jets", "San Francisco 49ers",
@@ -54,6 +54,7 @@ function getGameInfo(date) {
             throw new Error("No Games Found")
         }
 
+        var location = data.response[0].game.venue.city
         var homeTeamID = data.response[0].teams.home.id
         var awayTeamID = data.response[0].teams.away.id
         var homeTeamID1 = data.response[1].teams.home.id
@@ -67,6 +68,7 @@ function getGameInfo(date) {
         if (data.response[2] !== 0) {
             otherGames2(homeTeamID2, awayTeamID2)
         }
+        getWeather(location, date)
     })
 
 }; 
@@ -104,7 +106,7 @@ function otherGames2(homeTeam, awayTeam){
 //need function to fill var latLong
 
 
-function getWeather() {
+function getWeather(location, date) {
    var requestURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}/${date}?key=WNRU679QQP5CDJZWL8EN8LWH9`;
 
 
