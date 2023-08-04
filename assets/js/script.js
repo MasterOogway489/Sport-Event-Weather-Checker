@@ -121,19 +121,3 @@ getWeather();
 
 function makeGameCard() {}
 
-//dropdown menu codeblock
-
-// console.log(window);
-// console.log(window.document);
-
-// var dropdown = document.querySelector('.dropdown');
-// dropdown.addEventListener('click', function(event) {
-//   event.stopPropagation();
-//   dropdown.classList.toggle('is-active');
-//   console.log(dropdown)
-//   console.log(dropdown.dropdown-content)
-//   console.log(dropdown-item)
-
-// });
-
-
