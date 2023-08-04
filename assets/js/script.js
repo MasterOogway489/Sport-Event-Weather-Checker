@@ -6,6 +6,10 @@
 // 'X-RapidAPI-Host': 'api-american-football.p.rapidapi.com'
 var teamIdEl = document.getElementById("search-input");
 var formEl = document.getElementById("search-form");
+var homeTeamID = null;
+var awayTeamID = null;
+var latLong = null;
+var date = null;
 var teamID = ["Skip", "Las Vegas Raiders", "Jacksonville Jaguars", "New England Patriots", "New York Giants", "Baltimore Ravens", "Tennessee Titans", "Detroit Lions",
 "Atlanta Falcons", "Cleveland Browns", "Cincinnati Bengals", "Arizona Cardinals", "Philidelphia Eagles", "New York Jets", "San Francisco 49ers",
 "Green Bay Packers", "Chicago Bears", "Kansas City Cheifs", "Washington Commanders", "Carolina Panthers", "Buffalo Bills",
@@ -73,51 +77,16 @@ function TeamImg(homeTeamID, awayTeamID){;
 //need function to fill var latLong
 
 function getWeather() {
-    var latLong = cityWeather[homeTeamID];
-   var requestURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latLong}?key=WNRU679QQP5CDJZWL8EN8LWH9`;
-   var conditionsArray = [];
-   var tempArray = [];
-   var iconArray = [];
+    var requestURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + latLong + "/" + date + "?key=WNRU679QQP5CDJZWL8EN8LWH9";
 
    fetch(requestURL)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        for (var i = 0; i < data.days.length; i++) {
-            conditionsArray.push(data.days[i].conditions)
-        };
+      console.log(data);
     });
-
-    fetch(requestURL)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        for (var i = 0; i < data.days.length; i++) {
-            tempArray.push(data.days[i].temp)
-        };
-    });
-
-    fetch(requestURL)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        for (var i = 0; i < data.days.length; i++) {
-            iconArray.push(data.days[i].icon)
-        };
-    });
-
-    console.log('Weather: Conditions\n----------');
-    console.log(conditionsArray);
-    console.log('Weather: Temperature\n----------');
-    console.log(tempArray);
-    console.log('Weather: Icon\n----------')
-    console.log(iconArray);
 };
 
 getWeather();
-
-function makeGameCard() {}
 
