@@ -13,6 +13,7 @@ var homeTeamID2
 var awayTeamID1
 var awayTeamID2
 var date
+
 var teamID = ["Skip", "Las Vegas Raiders", "Jacksonville Jaguars", "New England Patriots", "New York Giants", "Baltimore Ravens", "Tennessee Titans", "Detroit Lions",
 "Atlanta Falcons", "Cleveland Browns", "Cincinnati Bengals", "Arizona Cardinals", "Philidelphia Eagles", "New York Jets", "San Francisco 49ers",
 "Green Bay Packers", "Chicago Bears", "Kansas City Cheifs", "Washington Commanders", "Carolina Panthers", "Buffalo Bills",
@@ -28,11 +29,17 @@ var cityWeather = ['Skip', '36.0909,115.1833', '30.3239,81.6373', '42.0909,71.26
 
 
 // store date variable from datepicker
-function getDate(){
+function getDate(dayIndex){
     var selectedDate = $("#datepicker").datepicker("getDate");
     console.log(dayjs(selectedDate).format("YYYY-MM-DD"))
     var date = dayjs(selectedDate).format("YYYY-MM-DD")
     getGameInfo(date);
+    date = date.split("-").join("");
+    today = today.split("-").join("");
+    dayIndex = date - today;
+    console.log(dayIndex)
+    getWeather(dayIndex);
+
 };
     
 function getGameInfo(date) {
@@ -106,30 +113,20 @@ function otherGames2(homeTeam, awayTeam){
 //Weather API function
 //need function to fill var latLong
 
+
 function getWeather(latLong) {
    var requestURL = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latLong}?key=WNRU679QQP5CDJZWL8EN8LWH9`;
    var conditionsArray = [];
    var tempArray = [];
    var iconArray = [];
 
+
    fetch(requestURL)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
-        for (var i = 0; i < data.days.length; i++) {
-            conditionsArray.push(data.days[i].conditions)
-        };
-    });
-
-    fetch(requestURL)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        for (var i = 0; i < data.days.length; i++) {
-            tempArray.push(data.days[i].temp)
-        };
+      console.log(data);
     });
 
     fetch(requestURL)
@@ -151,7 +148,7 @@ function getWeather(latLong) {
 };
 
 
-function makeGameCard() {}
+
 
 //dropdown menu codeblock
 
