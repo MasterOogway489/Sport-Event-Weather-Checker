@@ -14,6 +14,7 @@ var awayTeamID1
 var awayTeamID2
 var date
 var location
+var otherGamesEl = document.getElementById("other-games");
 
 var teamID = ["Skip", "Las Vegas Raiders", "Jacksonville Jaguars", "New England Patriots", "New York Giants", "Baltimore Ravens", "Tennessee Titans", "Detroit Lions",
 "Atlanta Falcons", "Cleveland Browns", "Cincinnati Bengals", "Arizona Cardinals", "Philidelphia Eagles", "New York Jets", "San Francisco 49ers",
@@ -53,55 +54,65 @@ function getGameInfo(date) {
         if (data.results === 0) {
             throw new Error("No Games Found")
         }
-
+        var responseLength = data.response.length
         var location = data.response[0].game.venue.city
         var homeTeamID = data.response[0].teams.home.id
         var awayTeamID = data.response[0].teams.away.id
-        var homeTeamID1 = data.response[1].teams.home.id
-        var awayTeamID1 = data.response[1].teams.away.id
-        var homeTeamID2 = data.response[2].teams.away.id
-        var awayTeamID2 = data.response[2].teams.away.id
+        var homeTeamID1 = data.response
+        var awayTeamID1 = data.response
+        // var homeTeamID2 = data.response[2].teams.away.id
+        // var awayTeamID2 = data.response[2].teams.away.id
         TeamImg(homeTeamID, awayTeamID);
-        if (data.response[1] !== 0) {
-            otherGames(homeTeamID1, awayTeamID1)
-        };
-        if (data.response[2] !== 0) {
-            otherGames2(homeTeamID2, awayTeamID2)
-        }
+        // if (data.response[1] !== 0) {
+            otherGames(homeTeamID1, awayTeamID1, responseLength)
+        // };
+        // if (data.response[2] !== 0) {
+        //     otherGames2(homeTeamID2, awayTeamID2)
+        // }
         getWeather(location, date)
     })
 
 }; 
 
-function TeamImg(homeTeamID, awayTeamID){;
-     var homeImg = document.createElement("img");
+
+
+function TeamImg(homeTeamID, awayTeamID){
+    
+     var homeImg = document.getElementById("home-team-logo");
      homeImg.src = 'https://media.api-sports.io/american-football/teams/' + homeTeamID + '.png';
-     var homeSrc = document.getElementById("home-team-logo");
-     homeSrc.appendChild(homeImg);
      var home = teamID[homeTeamID];
      document.getElementById("home").innerHTML = home
 
-     var awayImg = document.createElement("img");
+     var awayImg = document.getElementById("away-team-logo");
      awayImg.src = 'https://media.api-sports.io/american-football/teams/' + awayTeamID + '.png';
-     var awaySrc = document.getElementById("away-team-logo");
-     awaySrc.appendChild(awayImg)
      var away = teamID[awayTeamID];
      document.getElementById("away").innerHTML = away
  };
     
-function otherGames(homeTeam, awayTeam){
-    var home = teamID[homeTeam];
-    var away = teamID[awayTeam];
-    document.createElement("ul")
-    document.getElementById("game2").innerHTML = home + " VS " + away;
+function otherGames(homeTeam, awayTeam, responseLength){
+
+    
+    
+    if (otherGamesEl.childElementCount > 0) {
+        otherGamesEl.innerHTML = "";
+    }
+    
+    for (var i = 1; i < responseLength; i++) {
+    var home = teamID[homeTeam[i].teams.home.id];
+    var away = teamID[awayTeam[i].teams.away.id];
+    var list = document.createElement("ul")
+    list.textContent = home + " VS " + away;
+    document.getElementById("other-games").appendChild(list);
+    // document.getElementById("game2").innerHTML = home + " VS " + away;
+}
 };
 
-function otherGames2(homeTeam, awayTeam){
-    var home = teamID[homeTeam];
-    var away = teamID[awayTeam];
-    document.createElement("ul")
-    document.getElementById("game3").innerHTML = home + " VS " + away;
-};
+// function otherGames2(homeTeam, awayTeam){
+//     var home = teamID[homeTeam];
+//     var away = teamID[awayTeam];
+//     document.createElement("ul")
+//     document.getElementById("game3").innerHTML = home + " VS " + away;
+// };
 //Weather API function
 //need function to fill var latLong
 
@@ -115,7 +126,25 @@ function getWeather(location, date) {
         return response.json();
     })
     .then(function (data) {
-      console.log(data);
-    });
-};
+        console.log(data);
+        let currentTemp = data.days[0].temp;
+        let currentWind = data.days[0].windspeed;
+        let currentHumidity = data.days[0].humidity;
+        let description = data.days[0].description;
 
+        date = dayjs(date).format("MM/DD/YYYY");
+        
+        let weatherTitleEl = document.getElementById("weather-title");
+        let currentTempEl = document.getElementById("current-temp");
+        let currentWindEl = document.getElementById("current-wind-speed");
+        let currentHumidityEl = document.getElementById("current-humidity");
+        let descriptionEl = document.getElementById("description");
+        weatherTitleEl.textContent = `Weather for ${location} on ${date}`;
+        currentTempEl.textContent = `Temp: ${currentTemp}°F`;
+        currentHumidityEl.textContent = `Humidity: ${currentHumidity}%`;
+        currentWindEl.textContent = `Wind: ${currentWind} MPH`;
+        descriptionEl.textContent = description;
+    });
+
+
+};
