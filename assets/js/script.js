@@ -16,11 +16,12 @@ var date
 var location
 var otherGamesEl = document.getElementById("other-games");
 
+
 var teamID = ["Skip", "Las Vegas Raiders", "Jacksonville Jaguars", "New England Patriots", "New York Giants", "Baltimore Ravens", "Tennessee Titans", "Detroit Lions",
 "Atlanta Falcons", "Cleveland Browns", "Cincinnati Bengals", "Arizona Cardinals", "Philidelphia Eagles", "New York Jets", "San Francisco 49ers",
-"Green Bay Packers", "Chicago Bears", "Kansas City Cheifs", "Washington Commanders", "Carolina Panthers", "Buffalo Bills",
+"Green Bay Packers", "Chicago Bears", "Kansas City Chiefs", "Washington Commanders", "Carolina Panthers", "Buffalo Bills",
 "Indianapolis Colts", "Pittsburgh Steelers", "Seattle Seahawks", "Tampa Bay Buccaneers", "Miami Dolphins", "Huston Texans", "New Orleans Saints",
-"Denver Broncos", "Dallas Cowboys", "Los Angeles Chargers", "Las Angeles Rams", "Minnesota Vikings"];
+"Denver Broncos", "Dallas Cowboys", "Los Angeles Chargers", "Los Angeles Rams", "Minnesota Vikings"];
 // NEW YORK JETS DOES NOT HAVE A LOGO FOR SOME REASON
 
 
@@ -69,11 +70,19 @@ function getGameInfo(date) {
         // if (data.response[2] !== 0) {
         //     otherGames2(homeTeamID2, awayTeamID2)
         // }
+        var gameData = {
+            location: location,
+            homeTeamID: homeTeamID,
+            awayTeamID: awayTeamID,
+            homeTeamID1: homeTeamID1,
+            awayTeamID1: awayTeamID1,
+        };
+        localStorage.setItem('gameData', JSON.stringify(gameData));
+        retrieveGameData();
         getWeather(location, date)
     })
 
 }; 
-
 
 
 function TeamImg(homeTeamID, awayTeamID){
@@ -96,16 +105,23 @@ function otherGames(homeTeam, awayTeam, responseLength){
     if (otherGamesEl.childElementCount > 0) {
         otherGamesEl.innerHTML = "";
     }
-    
+    var gamesArray = [];
+
     for (var i = 1; i < responseLength; i++) {
     var home = teamID[homeTeam[i].teams.home.id];
     var away = teamID[awayTeam[i].teams.away.id];
-    var list = document.createElement("ul")
-    list.textContent = home + " VS " + away;
+    var gameString = home + " VS " + away;
+
+    gamesArray.push(gameString);
+    var list = document.createElement("ul");
+    list.textContent = gameString;
     document.getElementById("other-games").appendChild(list);
+    }
+    var gamesJsonString = JSON.stringify(gamesArray);
+    localStorage.setItem("savedData", gamesJsonString);
+
     // document.getElementById("game2").innerHTML = home + " VS " + away;
-}
-};
+    }
 
 // function otherGames2(homeTeam, awayTeam){
 //     var home = teamID[homeTeam];
@@ -144,7 +160,63 @@ function getWeather(location, date) {
         currentHumidityEl.textContent = `Humidity: ${currentHumidity}%`;
         currentWindEl.textContent = `Wind: ${currentWind} MPH`;
         descriptionEl.textContent = description;
+        var weatherData = {
+            currentTemp: currentTemp,
+            currentWind: currentWind,
+            currentHumidity: currentHumidity,
+            description: description,
+        };
+        localStorage.setItem('weatherData', JSON.stringify(weatherData));
+        retrieveWeatherData();
+
     });
+    };
+    document.getElementById("resetButton").addEventListener('click', function() {
+        document.getElementById("other-games").innerText = "";
+    })
+    function retrieveGameData() {
+        const storedDataString = localStorage.getItem('gameData');
+    
+        if (storedDataString) {
+            const storedData = JSON.parse(storedDataString);
+            console.log(storedData.location);
+            console.log(storedData.homeTeamID);
+            console.log(storedData.awayTeamID);
+        } else {
+            console.log('No data found in localStorage.');
+        }
+    }
+        function retrieveWeatherData() {
+            const storedDataString = localStorage.getItem('weatherData');
+        
+            if (storedDataString) {
+                const storedData = JSON.parse(storedDataString);
+                console.log(storedData.currentTemp);
+                console.log(storedData.currentWind);
+                console.log(storedData.currentHumidity);
+            } else {
+                console.log('No data found in localStorage.');
+            }
+    }
+    function parseAndAppendGameData() {
+        const gamesDataString = localStorage.getItem("savedData");
+    
+        if (gamesDataString) {
+            const gamesArray = JSON.parse(gamesDataString);
+            const otherGamesEl = document.getElementById("savedGames");
+            otherGamesEl.innerHTML = "";
+            const ul = document.createElement("ul");
+    
+            gamesArray.forEach(gameString => {
+                const li = document.createElement("li");
+                li.textContent = gameString;
+                ul.appendChild(li);
+            });
+            otherGamesEl.appendChild(ul);
+        }
+    }
+ parseAndAppendGameData();
 
-
-};
+    document.getElementById("savedResetButton").addEventListener('click', function() {
+        document.getElementById("savedGames").innerText = "";
+    })

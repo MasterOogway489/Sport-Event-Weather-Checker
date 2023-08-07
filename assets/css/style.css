@@ -4,13 +4,75 @@ background-color: gray;
 font-size: 32px;
 }
 
-.list-sports-column{
+/* .list-sports-column{
     background-color: darkred;
     color: white;
-}
+
+
+font-family: 'Lato', sans-serif;
+font-family: 'Playfair Display', serif;
+
+
+} */
+
 
 .weather-data{
-    background-color: darkblue;
+    background-color: #d0b3cc;
     color: white;
     font-size: large;
+}
+
+#hero-banner{
+    background-color: #f6f3f3;
+    color: black;
+    font-family: 'Playfair Display', serif;
+}
+
+#subtitle-banner{
+color: black
+
+}
+
+#title-text{
+    font-family: 'Playfair Display', serif;
+
+}
+
+#title-text-2{
+    font-family: 'Playfair Display', serif;
+    color: #d0b3cc;
+}
+
+#body-text{
+    font-family: 'Lato', sans-serif;
+    color: black;
+}
+
+#body-text-2{
+    font-family: 'Playfair Display', serif;
+    color: #d0b3cc;
+    font-size: 20px;
+}
+
+
+#page-background{
+
+background-color: #f6f3f3;
+color: #6e9191;
+}
+
+#hero-text{
+    color: black
+}
+
+#boxes-color{
+background-color: #abd4b2;
+}
+
+#boxes-color-2{
+background-color: #e9e2e2;
+}
+#boxes-color-3{
+    background-color: #6e9191;
+    color: white;
 }
