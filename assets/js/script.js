@@ -216,7 +216,3 @@ function getWeather(location, date) {
         }
     }
  parseAndAppendGameData();
-
-    document.getElementById("savedResetButton").addEventListener('click', function() {
-        document.getElementById("savedGames").innerText = "";
-    })
