@@ -1,9 +1,21 @@
-# Game Day Forecast
-## Description
-The Game Day Forecast is designed to allow a user to look up a team playing sometime in the next 30 days and get brief details of the games (i.e. location, opponent, and date) in a list format. Upon clicking on one of these list elements, the user will see accurate, up-to-date weather in the location of the game on the day it takes place. The app is designed to run in the browser and update automatically on element submission.
+# Sport Event Weather Checker
 
-### Contributors
-Erick Garcia
+## Description
+The purpose of this project is to allow a user to input a date and recieve a list of college football teams that are playing on that day. The first two teams displayed will also give you the information regarding the city they are playing in
+as well as the weather forecast for that day. It allows a user to get both game data and weather information in one place, creating a streamlined experience for the user allowing them to more easily plan according to thw weather if they decide
+to see a game on a certain day on a specific date.
+
+## Usage
+
+You begin on the home screen which promts you to pick a date. 
+
+After clicking the input box for the date, a calendar will pop up allowing you to click the date of your choosing.
+
+After the date has been clicked, The search box will fill in the date and then search for games happening on that day. 
+
+## Credits
 Samuel Wilson
+Erick Garcia
 Maximillian Doren  
 Ben Young
+
