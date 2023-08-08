@@ -6,11 +6,11 @@ as well as the weather forecast for that day. It allows a user to get both game 
 to see a game on a certain day on a specific date.
 
 ## Usage
-
+![Home](./assets/home.png)
 You begin on the home screen which promts you to pick a date. 
-
+![Calendar](./assets/calendar.png)
 After clicking the input box for the date, a calendar will pop up allowing you to click the date of your choosing.
-
+![Content](./assets/content.png)
 After the date has been clicked, The search box will fill in the date and then search for games happening on that day. 
 
 ## Credits
